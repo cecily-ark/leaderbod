@@ -19,6 +19,9 @@ function Item(data){
 
                             <div className="info">
                                 <h3 className="name text-dark">{value.name}</h3>
+                                <p>{value.path}</p>
+                                <p>{value.email}</p>
+                                <p>{value.phone}</p>
                                 <span>{value.location}</span>
                             </div>
                         </div>

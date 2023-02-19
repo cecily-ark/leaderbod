@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState} from "react";
 import Profiles from './profiles';
 import {Leaderboard} from './database';
 
@@ -16,10 +16,13 @@ export default function Board() {
             <h1 className="leaderboard">Leaderboard</h1>
 
             <div className="duration">
-                <button onClick={handleClick} data-id='7'>7</button>
-                <button onClick={handleClick} data-id='30'>30</button>
-                <button onClick={handleClick} data-id='0'>All-Time</button>
+                <button onClick={handleClick} data-id='7'>7 Days</button>
+                <button onClick={handleClick} data-id='30'>30 Days</button>
+                <button onClick={handleClick} data-id='0'>Whole Section</button>
             </div>
+            
+
+           
 
             <Profiles Leaderboard={between(Leaderboard, period)}></Profiles>
         </div>
@@ -30,19 +33,19 @@ export default function Board() {
 
 
 function between(data, between){
-    const today = newDate();
+    const today = new Date();
     const previous = new Date(today);
     previous.setDate(previous.getDate() - (between + 1));
 
     let filter = data.filter(val => {
         let userDate = new Date(val.dt);
-        if (between == 0) return val;
+        if (between === 0) return val;
         return previous <= userDate && today >= userDate;
     })
 
-    //sort with asending order
+    
     return filter.sort((a, b) => {
-        if (a,score === b.score){
+        if (a.score === b.score){
             return b.score - a.score;
         } else{
             return b.score - a.score;
